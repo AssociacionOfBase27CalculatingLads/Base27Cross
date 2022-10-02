@@ -52,7 +52,8 @@ class _CalculationPageState extends State<CalculationPage> {
               padding: EdgeInsets.symmetric(vertical: 5, horizontal: 10),
               width: double.infinity,
               constraints: BoxConstraints(minHeight: 100, maxHeight: 200),
-              child: Text("${stringFromList(calculation)}", style: TextStyle(fontSize: 18)),
+              child: Text("${stringFromList(calculation)}",
+                  style: TextStyle(fontSize: 18, color: Colors.lime)),
             ),
             Container(
               child: Column(children: [
@@ -62,27 +63,26 @@ class _CalculationPageState extends State<CalculationPage> {
                   symbolButton("2"),
                   symbolButton("3"),
                   symbolButton("4"),
-                  Expanded(
-                    child: TextButton(
-                        onPressed: () {
-                          bool remove = true;
-                          if (calculation.last == " ") {
-                            calculation.removeLast();
-                            if (calculation.last == "(") {
-                              remove = false;
-                            }
-                            calculation.removeLast();
-                          } else if (calculation.last == ")") {
-                            calculation.removeLast();
+                  TextButton(
+                      style: darkButtonStyle(),
+                      onPressed: () {
+                        bool remove = true;
+                        if (calculation.last == " ") {
+                          calculation.removeLast();
+                          if (calculation.last == "(") {
+                            remove = false;
                           }
-                          if (remove) {
-                            calculation.removeLast();
-                          }
-                          setState(() {});
-                        },
-                        child: Text("⌫",
-                            style: TextStyle(fontWeight: FontWeight.bold, color: Colors.red))),
-                  ),
+                          calculation.removeLast();
+                        } else if (calculation.last == ")") {
+                          calculation.removeLast();
+                        }
+                        if (remove) {
+                          calculation.removeLast();
+                        }
+                        setState(() {});
+                      },
+                      child: Text("⌫",
+                          style: TextStyle(fontWeight: FontWeight.bold, color: Colors.red))),
                 ]),
                 Row(children: [
                   symbolButton("4"),
@@ -90,15 +90,14 @@ class _CalculationPageState extends State<CalculationPage> {
                   symbolButton("6"),
                   symbolButton("7"),
                   symbolButton("8"),
-                  Expanded(
-                    child: TextButton(
-                        onPressed: () {
-                          calculation.clear();
-                          setState(() {});
-                        },
-                        child: Text("C",
-                            style: TextStyle(fontWeight: FontWeight.bold, color: Colors.red))),
-                  ),
+                  TextButton(
+                      style: darkButtonStyle(),
+                      onPressed: () {
+                        calculation.clear();
+                        setState(() {});
+                      },
+                      child: Text("C",
+                          style: TextStyle(fontWeight: FontWeight.bold, color: Colors.red))),
                 ]),
                 Row(children: [
                   symbolButton("9"),
@@ -106,17 +105,16 @@ class _CalculationPageState extends State<CalculationPage> {
                   symbolButton("β"),
                   symbolButton("γ"),
                   symbolButton("δ"),
-                  Expanded(
-                    child: TextButton(
-                        onPressed: () {
-                          calculation.add(" ");
-                          calculation.add("+");
-                          calculation.add(" ");
-                          setState(() {});
-                        },
-                        child: Text("+",
-                            style: TextStyle(fontWeight: FontWeight.bold, color: Colors.orange))),
-                  ),
+                  TextButton(
+                      style: darkButtonStyle(),
+                      onPressed: () {
+                        calculation.add(" ");
+                        calculation.add("+");
+                        calculation.add(" ");
+                        setState(() {});
+                      },
+                      child: Text("+",
+                          style: TextStyle(fontWeight: FontWeight.bold, color: Colors.orange))),
                 ]),
                 Row(children: [
                   symbolButton("ρ"),
@@ -124,17 +122,16 @@ class _CalculationPageState extends State<CalculationPage> {
                   symbolButton("η"),
                   symbolButton("∅"),
                   symbolButton("c"),
-                  Expanded(
-                    child: TextButton(
-                        onPressed: () {
-                          calculation.add(" ");
-                          calculation.add("-");
-                          calculation.add(" ");
-                          setState(() {});
-                        },
-                        child: Text("-",
-                            style: TextStyle(fontWeight: FontWeight.bold, color: Colors.orange))),
-                  ),
+                  TextButton(
+                      style: darkButtonStyle(),
+                      onPressed: () {
+                        calculation.add(" ");
+                        calculation.add("-");
+                        calculation.add(" ");
+                        setState(() {});
+                      },
+                      child: Text("-",
+                          style: TextStyle(fontWeight: FontWeight.bold, color: Colors.orange))),
                 ]),
                 Row(children: [
                   symbolButton("K"),
@@ -142,17 +139,16 @@ class _CalculationPageState extends State<CalculationPage> {
                   symbolButton("u"),
                   symbolButton("V"),
                   symbolButton("Ś"),
-                  Expanded(
-                    child: TextButton(
-                        onPressed: () {
-                          calculation.add(" ");
-                          calculation.add("*");
-                          calculation.add(" ");
-                          setState(() {});
-                        },
-                        child: Text("*",
-                            style: TextStyle(fontWeight: FontWeight.bold, color: Colors.orange))),
-                  ),
+                  TextButton(
+                      style: darkButtonStyle(),
+                      onPressed: () {
+                        calculation.add(" ");
+                        calculation.add("*");
+                        calculation.add(" ");
+                        setState(() {});
+                      },
+                      child: Text("*",
+                          style: TextStyle(fontWeight: FontWeight.bold, color: Colors.orange))),
                 ]),
                 Row(children: [
                   symbolButton("O"),
@@ -160,6 +156,7 @@ class _CalculationPageState extends State<CalculationPage> {
                   symbolButton("P"),
                   Expanded(
                     child: TextButton(
+                        style: darkButtonStyle(),
                         onPressed: () {
                           calculation.add("(");
                           calculation.add(" ");
@@ -170,6 +167,7 @@ class _CalculationPageState extends State<CalculationPage> {
                   ),
                   Expanded(
                     child: TextButton(
+                        style: darkButtonStyle(),
                         onPressed: () {
                           calculation.add(" ");
                           calculation.add(")");
@@ -178,34 +176,49 @@ class _CalculationPageState extends State<CalculationPage> {
                         child: Text(")",
                             style: TextStyle(fontWeight: FontWeight.bold, color: Colors.orange))),
                   ),
-                  Expanded(
-                    child: TextButton(
-                        onPressed: () {
-                          // calculation.add("0");
-                          result = api.calculateBongal(argss: stringFromList(calculation));
-                          print(result);
-                          setState(() {});
-                        },
-                        child: Text("=",
-                            style: TextStyle(fontWeight: FontWeight.bold, color: Colors.green))),
-                  ),
+                  TextButton(
+                      style: darkButtonStyle(),
+                      onPressed: () {
+                        calculation.add(" ");
+                        calculation.add("/");
+                        calculation.add(" ");
+                        setState(() {});
+                      },
+                      child: Text("/",
+                          style: TextStyle(fontWeight: FontWeight.bold, color: Colors.orange))),
                 ]),
               ]),
             ),
             SizedBox(height: 5),
-            Container(
-              decoration: BoxDecoration(
-                  color: Colors.grey.shade500, borderRadius: BorderRadius.circular(5)),
-              padding: EdgeInsets.symmetric(vertical: 5, horizontal: 10),
-              width: double.infinity,
-              child: FutureBuilder(
-                future: Future.wait([result]),
-                builder: ((context, snapshot) {
-                  return Text("${snapshot.data?[0] ?? "NONE"}",
-                      style: TextStyle(
-                          fontWeight: FontWeight.bold, fontSize: 17, color: Colors.black));
-                }),
-              ),
+            Row(
+              children: [
+                Expanded(
+                  child: Container(
+                    decoration: BoxDecoration(
+                        color: Colors.grey.shade500, borderRadius: BorderRadius.circular(5)),
+                    padding: EdgeInsets.symmetric(vertical: 5, horizontal: 10),
+                    // width: double.infinity,
+                    child: FutureBuilder(
+                      future: Future.wait([result]),
+                      builder: ((context, snapshot) {
+                        return Text("${snapshot.data?[0] ?? "NONE"}",
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold, fontSize: 17, color: Colors.black));
+                      }),
+                    ),
+                  ),
+                ),
+                TextButton(
+                    style: darkButtonStyle(),
+                    onPressed: () {
+                      // calculation.add("0");
+                      result = api.calculateBongal(argss: stringFromList(calculation));
+                      print(result);
+                      setState(() {});
+                    },
+                    child: Text("=",
+                        style: TextStyle(fontWeight: FontWeight.bold, color: Colors.green))),
+              ],
             ),
           ],
         ),
@@ -231,5 +244,9 @@ class _CalculationPageState extends State<CalculationPage> {
       result += arg;
     }
     return result;
+  }
+
+  darkButtonStyle() {
+    return ButtonStyle(backgroundColor: MaterialStatePropertyAll(Colors.grey.shade900));
   }
 }
