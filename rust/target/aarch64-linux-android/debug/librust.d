@@ -1,0 +1,1 @@
+/home/max/Desktop/Flutter/rust_combo_test/rust/target/aarch64-linux-android/debug/librust.a: /home/max/Desktop/Flutter/rust_combo_test/rust/src/api.rs /home/max/Desktop/Flutter/rust_combo_test/rust/src/bridge_generated.io.rs /home/max/Desktop/Flutter/rust_combo_test/rust/src/bridge_generated.rs /home/max/Desktop/Flutter/rust_combo_test/rust/src/lib.rs
