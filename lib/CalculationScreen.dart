@@ -37,168 +37,178 @@ class _CalculationPageState extends State<CalculationPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Bongal calculator"),
+        title: Text("bongal calculator™"),
       ),
-      body: Column(
-        children: [
-          Container(
-            decoration: BoxDecoration(color: Colors.grey.shade200),
-            padding: EdgeInsets.symmetric(vertical: 5, horizontal: 10),
-            width: double.infinity,
-            constraints: BoxConstraints(minHeight: 100, maxHeight: 200),
-            child: Text("${stringFromList(calculation)}", style: TextStyle(fontSize: 18)),
-          ),
-          Container(
-            child: Column(children: [
-              Row(children: [
-                symbolButton("0"),
-                symbolButton("1"),
-                symbolButton("2"),
-                symbolButton("3"),
-                symbolButton("4"),
-                Expanded(
-                  child: TextButton(
-                      onPressed: () {
-                        bool remove = true;
-                        if (calculation.last == " ") {
-                          calculation.removeLast();
-                          if (calculation.last == "(") {
-                            remove = false;
-                          }
-                          calculation.removeLast();
-                        } else if (calculation.last == ")") {
-                          calculation.removeLast();
-                        }
-                        if (remove) {
-                          calculation.removeLast();
-                        }
-                        setState(() {});
-                      },
-                      child: Text("⌫",
-                          style: TextStyle(fontWeight: FontWeight.bold, color: Colors.red))),
-                ),
-              ]),
-              Row(children: [
-                symbolButton("4"),
-                symbolButton("5"),
-                symbolButton("6"),
-                symbolButton("7"),
-                symbolButton("8"),
-                Expanded(
-                  child: TextButton(
-                      onPressed: () {
-                        calculation.clear();
-                        setState(() {});
-                      },
-                      child: Text("C",
-                          style: TextStyle(fontWeight: FontWeight.bold, color: Colors.red))),
-                ),
-              ]),
-              Row(children: [
-                symbolButton("9"),
-                symbolButton("α"),
-                symbolButton("β"),
-                symbolButton("γ"),
-                symbolButton("δ"),
-                Expanded(
-                  child: TextButton(
-                      onPressed: () {
-                        calculation.add(" ");
-                        calculation.add("+");
-                        calculation.add(" ");
-                        setState(() {});
-                      },
-                      child: Text("+",
-                          style: TextStyle(fontWeight: FontWeight.bold, color: Colors.orange))),
-                ),
-              ]),
-              Row(children: [
-                symbolButton("ρ"),
-                symbolButton("F"),
-                symbolButton("η"),
-                symbolButton("∅"),
-                symbolButton("c"),
-                Expanded(
-                  child: TextButton(
-                      onPressed: () {
-                        calculation.add(" ");
-                        calculation.add("-");
-                        calculation.add(" ");
-                        setState(() {});
-                      },
-                      child: Text("-",
-                          style: TextStyle(fontWeight: FontWeight.bold, color: Colors.orange))),
-                ),
-              ]),
-              Row(children: [
-                symbolButton("K"),
-                symbolButton("ʎ"),
-                symbolButton("u"),
-                symbolButton("V"),
-                symbolButton("Ś"),
-                Expanded(
-                  child: TextButton(
-                      onPressed: () {
-                        calculation.add(" ");
-                        calculation.add("*");
-                        calculation.add(" ");
-                        setState(() {});
-                      },
-                      child: Text("*",
-                          style: TextStyle(fontWeight: FontWeight.bold, color: Colors.orange))),
-                ),
-              ]),
-              Row(children: [
-                symbolButton("O"),
-                symbolButton("π"),
-                symbolButton("P"),
-                Expanded(
-                  child: TextButton(
-                      onPressed: () {
-                        calculation.add("(");
-                        calculation.add(" ");
-                        setState(() {});
-                      },
-                      child: Text("(",
-                          style: TextStyle(fontWeight: FontWeight.bold, color: Colors.orange))),
-                ),
-                Expanded(
-                  child: TextButton(
-                      onPressed: () {
-                        calculation.add(" ");
-                        calculation.add(")");
-                        setState(() {});
-                      },
-                      child: Text(")",
-                          style: TextStyle(fontWeight: FontWeight.bold, color: Colors.orange))),
-                ),
-                Expanded(
-                  child: TextButton(
-                      onPressed: () {
-                        // calculation.add("0");
-                        result = api.calculateBongal(argss: stringFromList(calculation));
-                        print(result);
-                        setState(() {});
-                      },
-                      child: Text("=",
-                          style: TextStyle(fontWeight: FontWeight.bold, color: Colors.green))),
-                ),
-              ]),
-            ]),
-          ),
-          Container(
-            decoration: BoxDecoration(color: Colors.grey.shade300),
-            padding: EdgeInsets.symmetric(vertical: 5, horizontal: 10),
-            width: double.infinity,
-            child: FutureBuilder(
-              future: Future.wait([result]),
-              builder: ((context, snapshot) {
-                return Text("${snapshot.data?[0] ?? "NONE"}",
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 17));
-              }),
+      body: Container(
+        padding: EdgeInsets.symmetric(horizontal: 5),
+        child: Column(
+          children: [
+            Container(
+              margin: EdgeInsets.symmetric(vertical: 5),
+              decoration: BoxDecoration(
+                color: Colors.grey.shade800,
+                borderRadius: BorderRadius.circular(10),
+              ),
+              padding: EdgeInsets.symmetric(vertical: 5, horizontal: 10),
+              width: double.infinity,
+              constraints: BoxConstraints(minHeight: 100, maxHeight: 200),
+              child: Text("${stringFromList(calculation)}", style: TextStyle(fontSize: 18)),
             ),
-          ),
-        ],
+            Container(
+              child: Column(children: [
+                Row(children: [
+                  symbolButton("0"),
+                  symbolButton("1"),
+                  symbolButton("2"),
+                  symbolButton("3"),
+                  symbolButton("4"),
+                  Expanded(
+                    child: TextButton(
+                        onPressed: () {
+                          bool remove = true;
+                          if (calculation.last == " ") {
+                            calculation.removeLast();
+                            if (calculation.last == "(") {
+                              remove = false;
+                            }
+                            calculation.removeLast();
+                          } else if (calculation.last == ")") {
+                            calculation.removeLast();
+                          }
+                          if (remove) {
+                            calculation.removeLast();
+                          }
+                          setState(() {});
+                        },
+                        child: Text("⌫",
+                            style: TextStyle(fontWeight: FontWeight.bold, color: Colors.red))),
+                  ),
+                ]),
+                Row(children: [
+                  symbolButton("4"),
+                  symbolButton("5"),
+                  symbolButton("6"),
+                  symbolButton("7"),
+                  symbolButton("8"),
+                  Expanded(
+                    child: TextButton(
+                        onPressed: () {
+                          calculation.clear();
+                          setState(() {});
+                        },
+                        child: Text("C",
+                            style: TextStyle(fontWeight: FontWeight.bold, color: Colors.red))),
+                  ),
+                ]),
+                Row(children: [
+                  symbolButton("9"),
+                  symbolButton("α"),
+                  symbolButton("β"),
+                  symbolButton("γ"),
+                  symbolButton("δ"),
+                  Expanded(
+                    child: TextButton(
+                        onPressed: () {
+                          calculation.add(" ");
+                          calculation.add("+");
+                          calculation.add(" ");
+                          setState(() {});
+                        },
+                        child: Text("+",
+                            style: TextStyle(fontWeight: FontWeight.bold, color: Colors.orange))),
+                  ),
+                ]),
+                Row(children: [
+                  symbolButton("ρ"),
+                  symbolButton("F"),
+                  symbolButton("η"),
+                  symbolButton("∅"),
+                  symbolButton("c"),
+                  Expanded(
+                    child: TextButton(
+                        onPressed: () {
+                          calculation.add(" ");
+                          calculation.add("-");
+                          calculation.add(" ");
+                          setState(() {});
+                        },
+                        child: Text("-",
+                            style: TextStyle(fontWeight: FontWeight.bold, color: Colors.orange))),
+                  ),
+                ]),
+                Row(children: [
+                  symbolButton("K"),
+                  symbolButton("ʎ"),
+                  symbolButton("u"),
+                  symbolButton("V"),
+                  symbolButton("Ś"),
+                  Expanded(
+                    child: TextButton(
+                        onPressed: () {
+                          calculation.add(" ");
+                          calculation.add("*");
+                          calculation.add(" ");
+                          setState(() {});
+                        },
+                        child: Text("*",
+                            style: TextStyle(fontWeight: FontWeight.bold, color: Colors.orange))),
+                  ),
+                ]),
+                Row(children: [
+                  symbolButton("O"),
+                  symbolButton("π"),
+                  symbolButton("P"),
+                  Expanded(
+                    child: TextButton(
+                        onPressed: () {
+                          calculation.add("(");
+                          calculation.add(" ");
+                          setState(() {});
+                        },
+                        child: Text("(",
+                            style: TextStyle(fontWeight: FontWeight.bold, color: Colors.orange))),
+                  ),
+                  Expanded(
+                    child: TextButton(
+                        onPressed: () {
+                          calculation.add(" ");
+                          calculation.add(")");
+                          setState(() {});
+                        },
+                        child: Text(")",
+                            style: TextStyle(fontWeight: FontWeight.bold, color: Colors.orange))),
+                  ),
+                  Expanded(
+                    child: TextButton(
+                        onPressed: () {
+                          // calculation.add("0");
+                          result = api.calculateBongal(argss: stringFromList(calculation));
+                          print(result);
+                          setState(() {});
+                        },
+                        child: Text("=",
+                            style: TextStyle(fontWeight: FontWeight.bold, color: Colors.green))),
+                  ),
+                ]),
+              ]),
+            ),
+            SizedBox(height: 5),
+            Container(
+              decoration: BoxDecoration(
+                  color: Colors.grey.shade500, borderRadius: BorderRadius.circular(5)),
+              padding: EdgeInsets.symmetric(vertical: 5, horizontal: 10),
+              width: double.infinity,
+              child: FutureBuilder(
+                future: Future.wait([result]),
+                builder: ((context, snapshot) {
+                  return Text("${snapshot.data?[0] ?? "NONE"}",
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold, fontSize: 17, color: Colors.black));
+                }),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -206,7 +216,7 @@ class _CalculationPageState extends State<CalculationPage> {
   symbolButton(String symbol) {
     return Expanded(
       child: TextButton(
-          style: ButtonStyle(backgroundColor: MaterialStatePropertyAll(Colors.grey.shade100)),
+          style: ButtonStyle(backgroundColor: MaterialStatePropertyAll(Colors.grey.shade200)),
           onPressed: () {
             calculation.add(symbol);
             setState(() {});
