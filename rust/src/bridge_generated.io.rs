@@ -27,8 +27,8 @@ pub extern "C" fn wire_calculate_simple(port_: i64, args: *mut wire_StringList) 
 }
 
 #[no_mangle]
-pub extern "C" fn wire_calculate_bongal(port_: i64, args: *mut wire_StringList) {
-    wire_calculate_bongal_impl(port_, args)
+pub extern "C" fn wire_calculate_bongal(port_: i64, argss: *mut wire_uint_8_list) {
+    wire_calculate_bongal_impl(port_, argss)
 }
 
 #[no_mangle]

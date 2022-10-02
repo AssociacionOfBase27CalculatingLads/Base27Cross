@@ -58,7 +58,7 @@ class _MyHomePageState extends State<MyHomePage> {
   void _incrementCounter() {
     setState(() {
       // counter = api.calculateSimple(args: ["2", "+", "4", "*", "5"]);
-      bongal = api.calculateBongal(args: ["2", "+", "K"]);
+      // bongal = api.calculateBongal(args: ["2", "+", "K"]);
     });
   }
 

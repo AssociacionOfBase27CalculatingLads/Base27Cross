@@ -32,7 +32,9 @@ pub fn calculate_simple(args: Vec<String>) -> u64 {
     CALC_RESULT.fetch_add(calculate(args).round() as u64, Ordering::SeqCst);
     CALC_RESULT.load(Ordering::SeqCst)
 }
-pub fn calculate_bongal(args: Vec<String>) -> String {
+pub fn calculate_bongal(argss: String) -> String {
+    // let split = argss.split(" ");
+    let args: Vec<String> = argss.split(" ").map(|f| f.to_string()).collect();
     return calculate27(args);
 }
 pub fn get_new_bongal() -> String {

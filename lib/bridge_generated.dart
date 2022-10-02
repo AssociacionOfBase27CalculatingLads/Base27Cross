@@ -31,7 +31,7 @@ abstract class Rust {
 
   FlutterRustBridgeTaskConstMeta get kCalculateSimpleConstMeta;
 
-  Future<String> calculateBongal({required List<String> args, dynamic hint});
+  Future<String> calculateBongal({required String argss, dynamic hint});
 
   FlutterRustBridgeTaskConstMeta get kCalculateBongalConstMeta;
 
@@ -57,9 +57,11 @@ class RustImpl implements Rust {
   factory RustImpl(ExternalLibrary dylib) => RustImpl.raw(RustPlatform(dylib));
 
   /// Only valid on web/WASM platforms.
-  factory RustImpl.wasm(FutureOr<WasmModule> module) => RustImpl(module as ExternalLibrary);
+  factory RustImpl.wasm(FutureOr<WasmModule> module) =>
+      RustImpl(module as ExternalLibrary);
   RustImpl.raw(this._platform);
-  Future<int> getCounter({dynamic hint}) => _platform.executeNormal(FlutterRustBridgeTask(
+  Future<int> getCounter({dynamic hint}) =>
+      _platform.executeNormal(FlutterRustBridgeTask(
         callFfi: (port_) => _platform.inner.wire_get_counter(port_),
         parseSuccessData: _wire2api_u64,
         constMeta: kGetCounterConstMeta,
@@ -67,12 +69,14 @@ class RustImpl implements Rust {
         hint: hint,
       ));
 
-  FlutterRustBridgeTaskConstMeta get kGetCounterConstMeta => const FlutterRustBridgeTaskConstMeta(
+  FlutterRustBridgeTaskConstMeta get kGetCounterConstMeta =>
+      const FlutterRustBridgeTaskConstMeta(
         debugName: "get_counter",
         argNames: [],
       );
 
-  Future<int> increment({dynamic hint}) => _platform.executeNormal(FlutterRustBridgeTask(
+  Future<int> increment({dynamic hint}) =>
+      _platform.executeNormal(FlutterRustBridgeTask(
         callFfi: (port_) => _platform.inner.wire_increment(port_),
         parseSuccessData: _wire2api_u64,
         constMeta: kIncrementConstMeta,
@@ -80,12 +84,14 @@ class RustImpl implements Rust {
         hint: hint,
       ));
 
-  FlutterRustBridgeTaskConstMeta get kIncrementConstMeta => const FlutterRustBridgeTaskConstMeta(
+  FlutterRustBridgeTaskConstMeta get kIncrementConstMeta =>
+      const FlutterRustBridgeTaskConstMeta(
         debugName: "increment",
         argNames: [],
       );
 
-  Future<int> decrement({dynamic hint}) => _platform.executeNormal(FlutterRustBridgeTask(
+  Future<int> decrement({dynamic hint}) =>
+      _platform.executeNormal(FlutterRustBridgeTask(
         callFfi: (port_) => _platform.inner.wire_decrement(port_),
         parseSuccessData: _wire2api_u64,
         constMeta: kDecrementConstMeta,
@@ -93,12 +99,14 @@ class RustImpl implements Rust {
         hint: hint,
       ));
 
-  FlutterRustBridgeTaskConstMeta get kDecrementConstMeta => const FlutterRustBridgeTaskConstMeta(
+  FlutterRustBridgeTaskConstMeta get kDecrementConstMeta =>
+      const FlutterRustBridgeTaskConstMeta(
         debugName: "decrement",
         argNames: [],
       );
 
-  Future<int> getResult({dynamic hint}) => _platform.executeNormal(FlutterRustBridgeTask(
+  Future<int> getResult({dynamic hint}) =>
+      _platform.executeNormal(FlutterRustBridgeTask(
         callFfi: (port_) => _platform.inner.wire_get_result(port_),
         parseSuccessData: _wire2api_u64,
         constMeta: kGetResultConstMeta,
@@ -106,15 +114,16 @@ class RustImpl implements Rust {
         hint: hint,
       ));
 
-  FlutterRustBridgeTaskConstMeta get kGetResultConstMeta => const FlutterRustBridgeTaskConstMeta(
+  FlutterRustBridgeTaskConstMeta get kGetResultConstMeta =>
+      const FlutterRustBridgeTaskConstMeta(
         debugName: "get_result",
         argNames: [],
       );
 
   Future<int> calculateSimple({required List<String> args, dynamic hint}) =>
       _platform.executeNormal(FlutterRustBridgeTask(
-        callFfi: (port_) =>
-            _platform.inner.wire_calculate_simple(port_, _platform.api2wire_StringList(args)),
+        callFfi: (port_) => _platform.inner
+            .wire_calculate_simple(port_, _platform.api2wire_StringList(args)),
         parseSuccessData: _wire2api_u64,
         constMeta: kCalculateSimpleConstMeta,
         argValues: [args],
@@ -127,23 +136,24 @@ class RustImpl implements Rust {
         argNames: ["args"],
       );
 
-  Future<String> calculateBongal({required List<String> args, dynamic hint}) =>
+  Future<String> calculateBongal({required String argss, dynamic hint}) =>
       _platform.executeNormal(FlutterRustBridgeTask(
-        callFfi: (port_) =>
-            _platform.inner.wire_calculate_bongal(port_, _platform.api2wire_StringList(args)),
+        callFfi: (port_) => _platform.inner
+            .wire_calculate_bongal(port_, _platform.api2wire_String(argss)),
         parseSuccessData: _wire2api_String,
         constMeta: kCalculateBongalConstMeta,
-        argValues: [args],
+        argValues: [argss],
         hint: hint,
       ));
 
   FlutterRustBridgeTaskConstMeta get kCalculateBongalConstMeta =>
       const FlutterRustBridgeTaskConstMeta(
         debugName: "calculate_bongal",
-        argNames: ["args"],
+        argNames: ["argss"],
       );
 
-  Future<String> getNewBongal({dynamic hint}) => _platform.executeNormal(FlutterRustBridgeTask(
+  Future<String> getNewBongal({dynamic hint}) =>
+      _platform.executeNormal(FlutterRustBridgeTask(
         callFfi: (port_) => _platform.inner.wire_get_new_bongal(port_),
         parseSuccessData: _wire2api_String,
         constMeta: kGetNewBongalConstMeta,
@@ -151,27 +161,30 @@ class RustImpl implements Rust {
         hint: hint,
       ));
 
-  FlutterRustBridgeTaskConstMeta get kGetNewBongalConstMeta => const FlutterRustBridgeTaskConstMeta(
+  FlutterRustBridgeTaskConstMeta get kGetNewBongalConstMeta =>
+      const FlutterRustBridgeTaskConstMeta(
         debugName: "get_new_bongal",
         argNames: [],
       );
 
   Future<double> calculate({required List<String> args, dynamic hint}) =>
       _platform.executeNormal(FlutterRustBridgeTask(
-        callFfi: (port_) =>
-            _platform.inner.wire_calculate(port_, _platform.api2wire_StringList(args)),
+        callFfi: (port_) => _platform.inner
+            .wire_calculate(port_, _platform.api2wire_StringList(args)),
         parseSuccessData: _wire2api_f64,
         constMeta: kCalculateConstMeta,
         argValues: [args],
         hint: hint,
       ));
 
-  FlutterRustBridgeTaskConstMeta get kCalculateConstMeta => const FlutterRustBridgeTaskConstMeta(
+  FlutterRustBridgeTaskConstMeta get kCalculateConstMeta =>
+      const FlutterRustBridgeTaskConstMeta(
         debugName: "calculate",
         argNames: ["args"],
       );
 
-  Future<double> calculateVerbose({dynamic hint}) => _platform.executeNormal(FlutterRustBridgeTask(
+  Future<double> calculateVerbose({dynamic hint}) =>
+      _platform.executeNormal(FlutterRustBridgeTask(
         callFfi: (port_) => _platform.inner.wire_calculate_verbose(port_),
         parseSuccessData: _wire2api_f64,
         constMeta: kCalculateVerboseConstMeta,
@@ -187,15 +200,16 @@ class RustImpl implements Rust {
 
   Future<String> calculate27({required List<String> args, dynamic hint}) =>
       _platform.executeNormal(FlutterRustBridgeTask(
-        callFfi: (port_) =>
-            _platform.inner.wire_calculate27(port_, _platform.api2wire_StringList(args)),
+        callFfi: (port_) => _platform.inner
+            .wire_calculate27(port_, _platform.api2wire_StringList(args)),
         parseSuccessData: _wire2api_String,
         constMeta: kCalculate27ConstMeta,
         argValues: [args],
         hint: hint,
       ));
 
-  FlutterRustBridgeTaskConstMeta get kCalculate27ConstMeta => const FlutterRustBridgeTaskConstMeta(
+  FlutterRustBridgeTaskConstMeta get kCalculate27ConstMeta =>
+      const FlutterRustBridgeTaskConstMeta(
         debugName: "calculate27",
         argNames: ["args"],
       );
@@ -267,13 +281,16 @@ class RustPlatform extends FlutterRustBridgeBase<RustWire> {
 /// generated by flutter_rust_bridge
 class RustWire implements FlutterRustBridgeWireBase {
   /// Holds the symbol lookup function.
-  final ffi.Pointer<T> Function<T extends ffi.NativeType>(String symbolName) _lookup;
+  final ffi.Pointer<T> Function<T extends ffi.NativeType>(String symbolName)
+      _lookup;
 
   /// The symbols are looked up in [dynamicLibrary].
   RustWire(ffi.DynamicLibrary dynamicLibrary) : _lookup = dynamicLibrary.lookup;
 
   /// The symbols are looked up with [lookup].
-  RustWire.fromLookup(ffi.Pointer<T> Function<T extends ffi.NativeType>(String symbolName) lookup)
+  RustWire.fromLookup(
+      ffi.Pointer<T> Function<T extends ffi.NativeType>(String symbolName)
+          lookup)
       : _lookup = lookup;
 
   void store_dart_post_cobject(
@@ -287,8 +304,8 @@ class RustWire implements FlutterRustBridgeWireBase {
   late final _store_dart_post_cobjectPtr =
       _lookup<ffi.NativeFunction<ffi.Void Function(DartPostCObjectFnType)>>(
           'store_dart_post_cobject');
-  late final _store_dart_post_cobject =
-      _store_dart_post_cobjectPtr.asFunction<void Function(DartPostCObjectFnType)>();
+  late final _store_dart_post_cobject = _store_dart_post_cobjectPtr
+      .asFunction<void Function(DartPostCObjectFnType)>();
 
   void wire_get_counter(
     int port_,
@@ -299,8 +316,10 @@ class RustWire implements FlutterRustBridgeWireBase {
   }
 
   late final _wire_get_counterPtr =
-      _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Int64)>>('wire_get_counter');
-  late final _wire_get_counter = _wire_get_counterPtr.asFunction<void Function(int)>();
+      _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Int64)>>(
+          'wire_get_counter');
+  late final _wire_get_counter =
+      _wire_get_counterPtr.asFunction<void Function(int)>();
 
   void wire_increment(
     int port_,
@@ -311,8 +330,10 @@ class RustWire implements FlutterRustBridgeWireBase {
   }
 
   late final _wire_incrementPtr =
-      _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Int64)>>('wire_increment');
-  late final _wire_increment = _wire_incrementPtr.asFunction<void Function(int)>();
+      _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Int64)>>(
+          'wire_increment');
+  late final _wire_increment =
+      _wire_incrementPtr.asFunction<void Function(int)>();
 
   void wire_decrement(
     int port_,
@@ -323,8 +344,10 @@ class RustWire implements FlutterRustBridgeWireBase {
   }
 
   late final _wire_decrementPtr =
-      _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Int64)>>('wire_decrement');
-  late final _wire_decrement = _wire_decrementPtr.asFunction<void Function(int)>();
+      _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Int64)>>(
+          'wire_decrement');
+  late final _wire_decrement =
+      _wire_decrementPtr.asFunction<void Function(int)>();
 
   void wire_get_result(
     int port_,
@@ -335,8 +358,10 @@ class RustWire implements FlutterRustBridgeWireBase {
   }
 
   late final _wire_get_resultPtr =
-      _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Int64)>>('wire_get_result');
-  late final _wire_get_result = _wire_get_resultPtr.asFunction<void Function(int)>();
+      _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Int64)>>(
+          'wire_get_result');
+  late final _wire_get_result =
+      _wire_get_resultPtr.asFunction<void Function(int)>();
 
   void wire_calculate_simple(
     int port_,
@@ -348,27 +373,29 @@ class RustWire implements FlutterRustBridgeWireBase {
     );
   }
 
-  late final _wire_calculate_simplePtr =
-      _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Int64, ffi.Pointer<wire_StringList>)>>(
-          'wire_calculate_simple');
-  late final _wire_calculate_simple =
-      _wire_calculate_simplePtr.asFunction<void Function(int, ffi.Pointer<wire_StringList>)>();
+  late final _wire_calculate_simplePtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(ffi.Int64,
+              ffi.Pointer<wire_StringList>)>>('wire_calculate_simple');
+  late final _wire_calculate_simple = _wire_calculate_simplePtr
+      .asFunction<void Function(int, ffi.Pointer<wire_StringList>)>();
 
   void wire_calculate_bongal(
     int port_,
-    ffi.Pointer<wire_StringList> args,
+    ffi.Pointer<wire_uint_8_list> argss,
   ) {
     return _wire_calculate_bongal(
       port_,
-      args,
+      argss,
     );
   }
 
-  late final _wire_calculate_bongalPtr =
-      _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Int64, ffi.Pointer<wire_StringList>)>>(
-          'wire_calculate_bongal');
-  late final _wire_calculate_bongal =
-      _wire_calculate_bongalPtr.asFunction<void Function(int, ffi.Pointer<wire_StringList>)>();
+  late final _wire_calculate_bongalPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(ffi.Int64,
+              ffi.Pointer<wire_uint_8_list>)>>('wire_calculate_bongal');
+  late final _wire_calculate_bongal = _wire_calculate_bongalPtr
+      .asFunction<void Function(int, ffi.Pointer<wire_uint_8_list>)>();
 
   void wire_get_new_bongal(
     int port_,
@@ -379,8 +406,10 @@ class RustWire implements FlutterRustBridgeWireBase {
   }
 
   late final _wire_get_new_bongalPtr =
-      _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Int64)>>('wire_get_new_bongal');
-  late final _wire_get_new_bongal = _wire_get_new_bongalPtr.asFunction<void Function(int)>();
+      _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Int64)>>(
+          'wire_get_new_bongal');
+  late final _wire_get_new_bongal =
+      _wire_get_new_bongalPtr.asFunction<void Function(int)>();
 
   void wire_calculate(
     int port_,
@@ -392,11 +421,12 @@ class RustWire implements FlutterRustBridgeWireBase {
     );
   }
 
-  late final _wire_calculatePtr =
-      _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Int64, ffi.Pointer<wire_StringList>)>>(
-          'wire_calculate');
-  late final _wire_calculate =
-      _wire_calculatePtr.asFunction<void Function(int, ffi.Pointer<wire_StringList>)>();
+  late final _wire_calculatePtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(
+              ffi.Int64, ffi.Pointer<wire_StringList>)>>('wire_calculate');
+  late final _wire_calculate = _wire_calculatePtr
+      .asFunction<void Function(int, ffi.Pointer<wire_StringList>)>();
 
   void wire_calculate_verbose(
     int port_,
@@ -407,8 +437,10 @@ class RustWire implements FlutterRustBridgeWireBase {
   }
 
   late final _wire_calculate_verbosePtr =
-      _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Int64)>>('wire_calculate_verbose');
-  late final _wire_calculate_verbose = _wire_calculate_verbosePtr.asFunction<void Function(int)>();
+      _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Int64)>>(
+          'wire_calculate_verbose');
+  late final _wire_calculate_verbose =
+      _wire_calculate_verbosePtr.asFunction<void Function(int)>();
 
   void wire_calculate27(
     int port_,
@@ -420,11 +452,12 @@ class RustWire implements FlutterRustBridgeWireBase {
     );
   }
 
-  late final _wire_calculate27Ptr =
-      _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Int64, ffi.Pointer<wire_StringList>)>>(
-          'wire_calculate27');
-  late final _wire_calculate27 =
-      _wire_calculate27Ptr.asFunction<void Function(int, ffi.Pointer<wire_StringList>)>();
+  late final _wire_calculate27Ptr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(
+              ffi.Int64, ffi.Pointer<wire_StringList>)>>('wire_calculate27');
+  late final _wire_calculate27 = _wire_calculate27Ptr
+      .asFunction<void Function(int, ffi.Pointer<wire_StringList>)>();
 
   ffi.Pointer<wire_StringList> new_StringList_0(
     int len,
@@ -434,11 +467,11 @@ class RustWire implements FlutterRustBridgeWireBase {
     );
   }
 
-  late final _new_StringList_0Ptr =
-      _lookup<ffi.NativeFunction<ffi.Pointer<wire_StringList> Function(ffi.Int32)>>(
-          'new_StringList_0');
-  late final _new_StringList_0 =
-      _new_StringList_0Ptr.asFunction<ffi.Pointer<wire_StringList> Function(int)>();
+  late final _new_StringList_0Ptr = _lookup<
+          ffi.NativeFunction<ffi.Pointer<wire_StringList> Function(ffi.Int32)>>(
+      'new_StringList_0');
+  late final _new_StringList_0 = _new_StringList_0Ptr
+      .asFunction<ffi.Pointer<wire_StringList> Function(int)>();
 
   ffi.Pointer<wire_uint_8_list> new_uint_8_list_0(
     int len,
@@ -448,11 +481,12 @@ class RustWire implements FlutterRustBridgeWireBase {
     );
   }
 
-  late final _new_uint_8_list_0Ptr =
-      _lookup<ffi.NativeFunction<ffi.Pointer<wire_uint_8_list> Function(ffi.Int32)>>(
-          'new_uint_8_list_0');
-  late final _new_uint_8_list_0 =
-      _new_uint_8_list_0Ptr.asFunction<ffi.Pointer<wire_uint_8_list> Function(int)>();
+  late final _new_uint_8_list_0Ptr = _lookup<
+      ffi.NativeFunction<
+          ffi.Pointer<wire_uint_8_list> Function(
+              ffi.Int32)>>('new_uint_8_list_0');
+  late final _new_uint_8_list_0 = _new_uint_8_list_0Ptr
+      .asFunction<ffi.Pointer<wire_uint_8_list> Function(int)>();
 
   void free_WireSyncReturnStruct(
     WireSyncReturnStruct val,
@@ -465,8 +499,8 @@ class RustWire implements FlutterRustBridgeWireBase {
   late final _free_WireSyncReturnStructPtr =
       _lookup<ffi.NativeFunction<ffi.Void Function(WireSyncReturnStruct)>>(
           'free_WireSyncReturnStruct');
-  late final _free_WireSyncReturnStruct =
-      _free_WireSyncReturnStructPtr.asFunction<void Function(WireSyncReturnStruct)>();
+  late final _free_WireSyncReturnStruct = _free_WireSyncReturnStructPtr
+      .asFunction<void Function(WireSyncReturnStruct)>();
 }
 
 class wire_uint_8_list extends ffi.Struct {
@@ -483,6 +517,6 @@ class wire_StringList extends ffi.Struct {
   external int len;
 }
 
-typedef DartPostCObjectFnType
-    = ffi.Pointer<ffi.NativeFunction<ffi.Bool Function(DartPort, ffi.Pointer<ffi.Void>)>>;
+typedef DartPostCObjectFnType = ffi.Pointer<
+    ffi.NativeFunction<ffi.Bool Function(DartPort, ffi.Pointer<ffi.Void>)>>;
 typedef DartPort = ffi.Int64;

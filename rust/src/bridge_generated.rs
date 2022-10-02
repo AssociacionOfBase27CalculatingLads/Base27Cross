@@ -72,7 +72,7 @@ fn wire_calculate_simple_impl(port_: MessagePort, args: impl Wire2Api<Vec<String
         },
     )
 }
-fn wire_calculate_bongal_impl(port_: MessagePort, args: impl Wire2Api<Vec<String>> + UnwindSafe) {
+fn wire_calculate_bongal_impl(port_: MessagePort, argss: impl Wire2Api<String> + UnwindSafe) {
     FLUTTER_RUST_BRIDGE_HANDLER.wrap(
         WrapInfo {
             debug_name: "calculate_bongal",
@@ -80,8 +80,8 @@ fn wire_calculate_bongal_impl(port_: MessagePort, args: impl Wire2Api<Vec<String
             mode: FfiCallMode::Normal,
         },
         move || {
-            let api_args = args.wire2api();
-            move |task_callback| Ok(calculate_bongal(api_args))
+            let api_argss = argss.wire2api();
+            move |task_callback| Ok(calculate_bongal(api_argss))
         },
     )
 }
